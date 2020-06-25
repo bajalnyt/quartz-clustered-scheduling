@@ -8,37 +8,32 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigureJob {
 
     @Bean
-    public JobDetail jobADetails() {
-        return JobBuilder.newJob(AJob.class).withIdentity("sampleJobA")
+    public JobDetail chaseJobDetails() {
+        return JobBuilder.newJob(ChaseJob.class).withIdentity("ChaseJob")
                 .storeDurably().build();
     }
 
     @Bean
-    public Trigger jobATrigger(JobDetail jobADetails) {
-
-        return TriggerBuilder.newTrigger().forJob(jobADetails)
-
-                .withIdentity("sampleTriggerA")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * ? * * *"))
+    public Trigger jobATrigger(JobDetail chaseJobDetails) {
+        return TriggerBuilder.newTrigger().forJob(chaseJobDetails)
+                .withIdentity("ChaseTrigger")
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 * * ? * * *")) //Every minute
                 .build();
     }
 
 
     @Bean
-    public JobDetail jobBDetails() {
-        return JobBuilder.newJob(BJob.class).withIdentity("sampleJobB")
+    public JobDetail amexJobDetails() {
+        return JobBuilder.newJob(AmexJob.class).withIdentity("AmexJob")
                 .storeDurably().build();
     }
 
     @Bean
-    public Trigger jobBTrigger(JobDetail jobBDetails) {
-
-        return TriggerBuilder.newTrigger().forJob(jobBDetails)
-
-                .withIdentity("sampleTriggerB")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * ? * * *"))
+    public Trigger amexJobTrigger(JobDetail amexJobDetails) {
+        return TriggerBuilder.newTrigger().forJob(amexJobDetails)
+                .withIdentity("AmexTrigger")
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 * * ? * * *")) //Every minute
                 .build();
     }
-
 
 }
