@@ -17,7 +17,7 @@ public class ConfigureJob {
     public Trigger jobATrigger(JobDetail chaseJobDetails) {
         return TriggerBuilder.newTrigger().forJob(chaseJobDetails)
                 .withIdentity("ChaseTrigger")
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 * * ? * * *")) //Every minute
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 * * ? * * *")) //Every 30 secs
                 .build();
     }
 
