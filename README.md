@@ -1,6 +1,8 @@
 ## Quartz Scheduler
 
-This uses a local datasource to make sure the job runs only once.
-The purpose is to test if the jobs get allocated to an instance. To simulate a cluster, run the spting boot app multiple times (From IDE or via gradle)
+![Java CI with Maven](https://github.com/bajalnyt/quartz-clustered-scheduling/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 
-The crons are defined in java class ConfigureJob but it can be taken out to a file as well. There are two jobs defined to run every minute (Chase and Amex). Then I booted up multiple instances of the spring boot app in my local and made sure the 2 jobs only run once every minute (They get randomly assigned to a spring boot instance)
+This project is a prototype to learn Quartz' scheduling capabilities, especially in a distributed (multi instance) enviroment. It uses a JDBC datasource (H2 or Oracle) to make sure the job runs only once.
+To emulate a cluster, run the spring boot app multiple times (From IDE or via gradle)
+
+The cron expressions are defined in ConfigureJob.java. There are two jobs defined to run every minute (Chase and Amex). Running multiple instances of the app causes the jobs to get randomly assigned to a spring boot instance.
